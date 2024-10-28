@@ -10,28 +10,35 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Laundry Service',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      home: const SplashScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
+class SplashScreen extends StatelessWidget{
+  const SplashScreen({super.key});
 
-class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Laundry Service'),
+      body: Container(
+        height: double.infinity,
+        color: Colors.deepPurple,
+        child: const Center(
+          child: Text('Laundry Service',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 36,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+        ),
       ),
     );
   }
