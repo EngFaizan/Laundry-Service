@@ -1,21 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:laundry_service/Info_RealTimeTracking.dart';
 
-class infoTurnaround extends StatefulWidget {
-  const infoTurnaround({super.key});
-
-  @override
-  State<StatefulWidget> createState() => InfoTurnaroundState();
-}
-
-class InfoTurnaroundState extends State<infoTurnaround> {
+class infoRealTimeTracking extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        color: Colors.cyanAccent,
+        color: Colors.pink.shade200,
         child: Stack(
           children: [
             Column(
@@ -26,7 +18,7 @@ class InfoTurnaroundState extends State<infoTurnaround> {
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
-                    '24h turnaround',
+                    'Real-time Tracking',
                     style: TextStyle(
                       color: Colors.deepPurple,
                       fontSize: 48,
@@ -37,7 +29,7 @@ class InfoTurnaroundState extends State<infoTurnaround> {
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
-                    'No need to plan in advance. Choose a collection and delivery time at your convenience and get clean laundry delivered to your doorstep.',
+                    'Always know where your items are and when they will be delivered.',
                     style: TextStyle(
                       color: Colors.deepPurple,
                       fontSize: 24,
@@ -45,18 +37,20 @@ class InfoTurnaroundState extends State<infoTurnaround> {
                     ),
                   ),
                 ),
-                Image.asset('assets/images/delivery.jpg'),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset('assets/images/tracking.png'),
+                  )
+                ),
                 SizedBox(
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => infoRealTimeTracking())
-                          );
-                        },
+                        onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(
@@ -94,12 +88,12 @@ class InfoTurnaroundState extends State<infoTurnaround> {
               ],
             ),
             Positioned(
-              bottom: 300,
-              right: 10,
+              bottom: 200,
+              left: 10,
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10)
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)
                 ),
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -116,14 +110,14 @@ class InfoTurnaroundState extends State<infoTurnaround> {
                             shape: BoxShape.circle,
                           ),
                           child: const Icon(
-                            Icons.access_time_filled_outlined,
+                            Icons.speed,
                             color: Colors.black,
                             size: 24,
                           ),
                         ),
                         const SizedBox(width: 10),
                         const Text(
-                          'Get your laundry back in 24h',
+                          'Regular order updates',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
@@ -145,14 +139,14 @@ class InfoTurnaroundState extends State<infoTurnaround> {
                             shape: BoxShape.circle,
                           ),
                           child: const Icon(
-                            Icons.delivery_dining,
+                            Icons.location_on_outlined,
                             color: Colors.black,
                             size: 24,
                           ),
                         ),
                         const SizedBox(width: 10),
                         const Text(
-                          'Free collection and delivery',
+                          'Live driver tracking',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
@@ -160,34 +154,6 @@ class InfoTurnaroundState extends State<infoTurnaround> {
                           ),
                         ),
                         const SizedBox(width: 10),
-                      ],
-                    ),
-                    const SizedBox(height: 5,),
-                    Row(
-                      children: [
-                        const SizedBox(width: 10),
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.amberAccent,
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Icon(
-                            Icons.door_front_door,
-                            color: Colors.black,
-                            size: 24,
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'Door-to-door delivery',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
                       ],
                     ),
                   ],
