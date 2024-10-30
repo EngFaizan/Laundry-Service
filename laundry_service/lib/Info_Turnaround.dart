@@ -94,7 +94,7 @@ class InfoTurnaroundState extends State<infoTurnaround> {
               ],
             ),
             Positioned(
-              bottom: 300,
+              bottom: 180,
               right: 10,
               child: Container(
                 decoration: BoxDecoration(

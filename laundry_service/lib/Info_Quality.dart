@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laundry_service/selectLocation.dart';
 
 class infoQuality extends StatefulWidget{
   @override
@@ -49,7 +50,11 @@ class _infoQualityState extends State<infoQuality> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => SelectLocation())
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(
