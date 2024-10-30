@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laundry_service/Info_Turnaround.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({super.key});
@@ -72,7 +73,11 @@ class StartPage extends StatelessWidget {
                           Column(
                             children: [
                               ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) => infoTurnaround())
+                                  );
+                                },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.white,
                                   padding: const EdgeInsets.symmetric(
@@ -110,7 +115,6 @@ class StartPage extends StatelessWidget {
                                         color: Colors.white,
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
-                                        decoration: TextDecoration.underline,
                                       ),
                                     ),
                                   ),
