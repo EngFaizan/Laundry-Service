@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:laundry_service/Info_Quality.dart';
 
-class infoRealTimeTracking extends StatefulWidget{
-  const infoRealTimeTracking({super.key});
-
+class infoQuality extends StatefulWidget{
   @override
-  State<infoRealTimeTracking> createState() => infoRealTimeTrackingState();
+  State<infoQuality> createState() => _infoQualityState();
 }
 
-class infoRealTimeTrackingState extends State<infoRealTimeTracking> {
+class _infoQualityState extends State<infoQuality> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        color: Colors.pink.shade200,
+        color: Colors.orangeAccent.shade100,
         child: Stack(
           children: [
             Column(
@@ -26,7 +23,7 @@ class infoRealTimeTrackingState extends State<infoRealTimeTracking> {
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
-                    'Real-time Tracking',
+                    'Professional quality',
                     style: TextStyle(
                       color: Colors.deepPurple,
                       fontSize: 48,
@@ -37,7 +34,7 @@ class infoRealTimeTrackingState extends State<infoRealTimeTracking> {
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
-                    'Always know where your items are and when they will be delivered.',
+                    'We partner with carefully-selected local cleaning partners to ensure your items are treated with the utmost care.',
                     style: TextStyle(
                       color: Colors.deepPurple,
                       fontSize: 24,
@@ -45,24 +42,14 @@ class infoRealTimeTrackingState extends State<infoRealTimeTracking> {
                     ),
                   ),
                 ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset('assets/images/tracking.png'),
-                  )
-                ),
+                Image.asset('assets/images/professionalCleaners.jpg'),
                 SizedBox(
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => infoQuality())
-                          );
-                        },
+                        onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(
@@ -122,14 +109,14 @@ class infoRealTimeTrackingState extends State<infoRealTimeTracking> {
                             shape: BoxShape.circle,
                           ),
                           child: const Icon(
-                            Icons.speed,
+                            Icons.favorite,
                             color: Colors.black,
                             size: 24,
                           ),
                         ),
                         const SizedBox(width: 10),
                         const Text(
-                          'Regular order updates',
+                          'Trustworthy local cleaners',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
@@ -151,14 +138,43 @@ class infoRealTimeTrackingState extends State<infoRealTimeTracking> {
                             shape: BoxShape.circle,
                           ),
                           child: const Icon(
-                            Icons.location_on_outlined,
+                            Icons.shopping_bag,
                             color: Colors.black,
                             size: 24,
                           ),
                         ),
                         const SizedBox(width: 10),
                         const Text(
-                          'Live driver tracking',
+                          'Each order processed separately',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                      ],
+                    ),
+                    const SizedBox(height: 5,),
+                    Row(
+                      children: [
+                        const SizedBox(width: 10),
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: const BoxDecoration(
+                            color: Colors.amberAccent,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.star,
+                            color: Colors.black,
+                            size: 24,
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        const Text(
+                          'Professional cleaning process',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
