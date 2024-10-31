@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:laundry_service/Info_Quality.dart';
 
-class infoRealTimeTracking extends StatefulWidget{
-  const infoRealTimeTracking({super.key});
+class InfoRealTimeTracking extends StatefulWidget {
+  const InfoRealTimeTracking({super.key});
 
   @override
-  State<infoRealTimeTracking> createState() => infoRealTimeTrackingState();
+  State<InfoRealTimeTracking> createState() => InfoRealTimeTrackingState();
 }
 
-class infoRealTimeTrackingState extends State<infoRealTimeTracking> {
+class InfoRealTimeTrackingState extends State<InfoRealTimeTracking> {
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -22,25 +25,25 @@ class infoRealTimeTrackingState extends State<infoRealTimeTracking> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 20),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                SizedBox(height: screenHeight * 0.02),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                   child: Text(
                     'Real-time Tracking',
                     style: TextStyle(
                       color: Colors.deepPurple,
-                      fontSize: 48,
+                      fontSize: screenWidth * 0.125,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                   child: Text(
                     'Always know where your items are and when they will be delivered.',
                     style: TextStyle(
                       color: Colors.deepPurple,
-                      fontSize: 24,
+                      fontSize: screenWidth * 0.07,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -48,9 +51,14 @@ class infoRealTimeTrackingState extends State<infoRealTimeTracking> {
                 Align(
                   alignment: Alignment.centerRight,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset('assets/images/tracking.png'),
-                  )
+                    padding: EdgeInsets.all(screenWidth * 0.02),
+                    child: Image.asset(
+                      'assets/images/tracking.png',
+                      width: screenWidth * 0.8,
+                      height: screenHeight * 0.4,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
                 SizedBox(
                   width: double.infinity,
@@ -59,23 +67,26 @@ class infoRealTimeTrackingState extends State<infoRealTimeTracking> {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => infoQuality())
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const InfoQuality()),
                           );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 150, vertical: 15),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: screenWidth * 0.4,
+                            vertical: screenHeight * 0.02,
+                          ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        child: const Text(
+                        child: Text(
                           "Next",
                           style: TextStyle(
                             color: Colors.deepPurpleAccent,
-                            fontSize: 24,
+                            fontSize: screenWidth * 0.06,
                             fontWeight: FontWeight.w900,
                           ),
                         ),
@@ -84,11 +95,11 @@ class infoRealTimeTrackingState extends State<infoRealTimeTracking> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: const Text(
+                        child: Text(
                           'Back',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 24,
+                            fontSize: screenWidth * 0.06,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -96,77 +107,32 @@ class infoRealTimeTrackingState extends State<infoRealTimeTracking> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: screenHeight * 0.02),
               ],
             ),
             Positioned(
-              bottom: 200,
-              left: 10,
+              bottom: screenHeight * 0.4,
+              left: screenWidth * 0.02,
               child: Container(
+                width: screenWidth * 0.85,
                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(screenWidth * 0.02),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        const SizedBox(width: 10),
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.amberAccent,
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Icon(
-                            Icons.speed,
-                            color: Colors.black,
-                            size: 24,
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'Regular order updates',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                      ],
+                    _buildInfoRow(
+                      icon: Icons.speed,
+                      text: 'Regular order updates',
+                      screenWidth: screenWidth,
                     ),
-                    const SizedBox(height: 5,),
-                    Row(
-                      children: [
-                        const SizedBox(width: 10),
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.amberAccent,
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Icon(
-                            Icons.location_on_outlined,
-                            color: Colors.black,
-                            size: 24,
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'Live driver tracking',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                      ],
+                    SizedBox(height: screenHeight * 0.01),
+                    _buildInfoRow(
+                      icon: Icons.location_on_outlined,
+                      text: 'Live driver tracking',
+                      screenWidth: screenWidth,
                     ),
                   ],
                 ),
@@ -175,6 +141,37 @@ class infoRealTimeTrackingState extends State<infoRealTimeTracking> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildInfoRow({required IconData icon, required String text, required double screenWidth}) {
+    return Row(
+      children: [
+        Container(
+          width: screenWidth * 0.1,
+          height: screenWidth * 0.1,
+          decoration: const BoxDecoration(
+            color: Colors.amberAccent,
+            shape: BoxShape.circle,
+          ),
+          child: Icon(
+            icon,
+            color: Colors.black,
+            size: screenWidth * 0.05,
+          ),
+        ),
+        SizedBox(width: screenWidth * 0.03),
+        Expanded(
+          child: Text(
+            text,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: screenWidth * 0.045,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

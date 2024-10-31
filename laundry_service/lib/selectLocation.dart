@@ -7,167 +7,149 @@ class SelectLocation extends StatefulWidget {
 
 class SelectLocationState extends State<SelectLocation> {
   final Map<String, List<String>> countryCityData = {
-    'USA': ['New York', 'Los Angeles', 'Chicago'],
-    'India': ['Mumbai', 'Delhi', 'Bangalore'],
-    'Canada': ['Toronto', 'Vancouver', 'Montreal'],
-    'Australia': ['Sydney', 'Melbourne', 'Brisbane'],
+    'UAE': ['Dubai', 'Abu Dhabi', 'Sharjah', 'Ajman', 'Umm Al-Quwain', 'Fujairah'],
   };
 
-  String? selectedCountry; // Initialize as null and update based on selection
-  String? selectedCity; // Initialize as null
+  final String selectedCountry = 'UAE'; // Permanently set country to UAE
+  String? selectedCity;
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    // Scale font sizes based on screen width
+    double titleFontSize = screenWidth * 0.08;
+    double labelFontSize = screenWidth * 0.05;
+    double dropdownFontSize = screenWidth * 0.05;
+
     return Scaffold(
-      appBar: AppBar(
-      ),
-      body: Expanded(
+      appBar: AppBar(),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05), // Responsive horizontal padding
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Select location to see prices.',
-                    style: TextStyle(
-                        fontSize: 36,
-                        fontWeight: FontWeight.bold
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  const Text(
-                    'Select Country',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey, // Choose the outline color you want
-                        width: 2.0,         // Outline thickness
-                      ),
-                      borderRadius: BorderRadius.circular(8), // Optional: Rounded corners
-                    ),
-                    child: DropdownButton<String>(
-                      value: selectedCountry,
-                      isExpanded: true,
-                      underline: const SizedBox(), // Remove default underline
-                      hint: const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Text('Choose a country'),
-                      ),
-                      items: countryCityData.keys.map((country) {
-                        return DropdownMenuItem<String>(
-                          value: country,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Text(country,
-                              style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold
-                              ),
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                      onChanged: (newCountry) {
-                        setState(() {
-                          selectedCountry = newCountry;
-                          selectedCity = null; // Reset city when country changes
-                        });
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  const Text(
-                    'Select City',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey, // Choose the outline color you want
-                        width: 2.0,         // Outline thickness
-                      ),
-                      borderRadius: BorderRadius.circular(8), // Optional: Rounded corners
-                    ),
-                    child: DropdownButton<String>(
-                      value: selectedCity,
-                      isExpanded: true,
-                      underline: const SizedBox(), // Remove default underline
-                      hint: const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Text('Choose a city'),
-                      ),
-                      items: selectedCountry != null
-                          ? countryCityData[selectedCountry!]!.map((city) {
-                        return DropdownMenuItem<String>(
-                          value: city,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Text(city,
-                              style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold
-                              ),
-                            ),
-                          ),
-                        );
-                      }).toList()
-                          : [],
-                      onChanged: (newCity) {
-                        setState(() {
-                          selectedCity = newCity;
-                        });
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 120, vertical: 15),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+                Text(
+                  'Select your location.',
+                  style: TextStyle(
+                      fontSize: titleFontSize,
+                      fontWeight: FontWeight.bold
                   ),
-                  child: const Text(
-                    "CONTINUE",
+                ),
+                SizedBox(height: screenHeight * 0.02),
+                Text(
+                  'Country',
+                  style: TextStyle(fontSize: labelFontSize),
+                ),
+                Container(
+                  width: screenWidth,
+                  padding: EdgeInsets.all(screenWidth * 0.03), // Responsive padding
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    selectedCountry,
                     style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
+                      fontSize: dropdownFontSize,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: screenHeight * 0.02),
+                Text(
+                  'Select City',
+                  style: TextStyle(fontSize: labelFontSize),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: DropdownButton<String>(
+                    value: selectedCity,
+                    isExpanded: true,
+                    underline: const SizedBox(),
+                    hint: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.03),
+                      child: Text(
+                        'Choose a city',
+                        style: TextStyle(fontSize: dropdownFontSize),
+                      ),
+                    ),
+                    items: countryCityData[selectedCountry]!.map((city) {
+                      return DropdownMenuItem<String>(
+                        value: city,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.03),
+                          child: Text(
+                            city,
+                            style: TextStyle(
+                                fontSize: dropdownFontSize,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (newCity) {
+                      setState(() {
+                        selectedCity = newCity;
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: screenHeight * 0.05),
+            Column(
+              children: [
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    padding: EdgeInsets.symmetric(
+                        horizontal: screenWidth * 0.3, vertical: screenHeight * 0.02), // Responsive padding
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Text(
+                    "CONTINUE",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: labelFontSize,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(height: screenHeight * 0.01),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       'Already a User? ',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: labelFontSize * 0.9,
                         fontWeight: FontWeight.normal,
                       ),
                     ),
                     TextButton(
                       onPressed: () {},
-                      child: const Text(
+                      child: Text(
                         'Log in',
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: 16,
+                          fontSize: labelFontSize * 0.9,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -182,4 +164,3 @@ class SelectLocationState extends State<SelectLocation> {
     );
   }
 }
-

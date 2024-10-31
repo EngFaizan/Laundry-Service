@@ -1,51 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:laundry_service/Info_RealTimeTracking.dart';
 
-class infoTurnaround extends StatefulWidget {
-  const infoTurnaround({super.key});
+class InfoTurnaround extends StatefulWidget {
+  const InfoTurnaround({super.key});
 
   @override
   State<StatefulWidget> createState() => InfoTurnaroundState();
 }
 
-class InfoTurnaroundState extends State<infoTurnaround> {
+class InfoTurnaroundState extends State<InfoTurnaround> {
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        color: Colors.cyanAccent,
+        color: Colors.lightBlueAccent,
         child: Stack(
           children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 20),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                SizedBox(height: screenHeight * 0.02),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                   child: Text(
                     '24h turnaround',
                     style: TextStyle(
                       color: Colors.deepPurple,
-                      fontSize: 48,
+                      fontSize: screenWidth * 0.15,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                   child: Text(
                     'No need to plan in advance. Choose a collection and delivery time at your convenience and get clean laundry delivered to your doorstep.',
                     style: TextStyle(
                       color: Colors.deepPurple,
-                      fontSize: 24,
+                      fontSize: screenWidth * 0.07,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
-                Image.asset('assets/images/delivery.jpg'),
+                Image.asset(
+                  'assets/images/delivery.jpg',
+                  width: screenWidth * 0.9,
+                  height: screenHeight * 0.4,
+                  fit: BoxFit.cover,
+                ),
                 SizedBox(
                   width: double.infinity,
                   child: Column(
@@ -53,23 +61,28 @@ class InfoTurnaroundState extends State<infoTurnaround> {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => infoRealTimeTracking())
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const InfoRealTimeTracking(),
+                            ),
                           );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 150, vertical: 15),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: screenWidth * 0.4,
+                            vertical: screenHeight * 0.02,
+                          ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        child: const Text(
+                        child: Text(
                           "Next",
                           style: TextStyle(
                             color: Colors.deepPurpleAccent,
-                            fontSize: 24,
+                            fontSize: screenWidth * 0.06,
                             fontWeight: FontWeight.w900,
                           ),
                         ),
@@ -78,11 +91,11 @@ class InfoTurnaroundState extends State<infoTurnaround> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: const Text(
+                        child: Text(
                           'Back',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 24,
+                            fontSize: screenWidth * 0.06,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -90,105 +103,37 @@ class InfoTurnaroundState extends State<infoTurnaround> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 20),
               ],
             ),
             Positioned(
-              bottom: 180,
-              right: 10,
+              bottom: screenHeight * 0.2,
+              right: screenWidth * 0.02,
               child: Container(
+                width: screenWidth * 0.85,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(10)
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(screenWidth * 0.02),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        const SizedBox(width: 10),
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.amberAccent,
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Icon(
-                            Icons.access_time_filled_outlined,
-                            color: Colors.black,
-                            size: 24,
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'Get your laundry back in 24h',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                      ],
+                    _buildInfoRow(
+                      icon: Icons.access_time_filled_outlined,
+                      text: 'Get your laundry back in 24h',
+                      screenWidth: screenWidth,
                     ),
-                    const SizedBox(height: 5,),
-                    Row(
-                      children: [
-                        const SizedBox(width: 10),
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.amberAccent,
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Icon(
-                            Icons.delivery_dining,
-                            color: Colors.black,
-                            size: 24,
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'Free collection and delivery',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                      ],
+                    SizedBox(height: screenHeight * 0.01),
+                    _buildInfoRow(
+                      icon: Icons.delivery_dining,
+                      text: 'Free collection and delivery',
+                      screenWidth: screenWidth,
                     ),
-                    const SizedBox(height: 5,),
-                    Row(
-                      children: [
-                        const SizedBox(width: 10),
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.amberAccent,
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Icon(
-                            Icons.door_front_door,
-                            color: Colors.black,
-                            size: 24,
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'Door-to-door delivery',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
+                    SizedBox(height: screenHeight * 0.01),
+                    _buildInfoRow(
+                      icon: Icons.door_front_door,
+                      text: 'Door-to-door delivery',
+                      screenWidth: screenWidth,
                     ),
                   ],
                 ),
@@ -197,6 +142,37 @@ class InfoTurnaroundState extends State<infoTurnaround> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildInfoRow({required IconData icon, required String text, required double screenWidth}) {
+    return Row(
+      children: [
+        Container(
+          width: screenWidth * 0.1,
+          height: screenWidth * 0.1,
+          decoration: const BoxDecoration(
+            color: Colors.amberAccent,
+            shape: BoxShape.circle,
+          ),
+          child: Icon(
+            icon,
+            color: Colors.black,
+            size: screenWidth * 0.05,
+          ),
+        ),
+        SizedBox(width: screenWidth * 0.03),
+        Expanded(
+          child: Text(
+            text,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: screenWidth * 0.045,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

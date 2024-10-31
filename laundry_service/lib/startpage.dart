@@ -6,6 +6,9 @@ class StartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: Center(
         child: Container(
@@ -18,7 +21,7 @@ class StartPage extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(height: 100),
+                  SizedBox(height: screenHeight * 0.1),
                   const Text(
                     'Laundry Service',
                     style: TextStyle(
@@ -27,28 +30,28 @@ class StartPage extends StatelessWidget {
                       fontWeight: FontWeight.w900,
                     ),
                   ),
-                  const SizedBox(height: 120), // Space for the circle
+                  SizedBox(height: screenHeight * 0.15), // Space for the circle
                   Expanded(
                     child: Container(
                       width: double.infinity,
                       decoration: const BoxDecoration(
                         color: Colors.deepPurpleAccent,
                         borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(40),
-                          topRight: Radius.circular(40),
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
                         ),
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          const Column(
+                          Column(
                             children: [
-                              SizedBox(height: 150),
+                              SizedBox(height: screenHeight * 0.15),
                               Text(
                                 'The world\'s',
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 36,
+                                  fontSize: screenWidth * 0.09,
                                   fontWeight: FontWeight.w900,
                                 ),
                               ),
@@ -56,7 +59,7 @@ class StartPage extends StatelessWidget {
                                 'leading 24h',
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 36,
+                                  fontSize: screenWidth * 0.09,
                                   fontWeight: FontWeight.w900,
                                 ),
                               ),
@@ -64,7 +67,7 @@ class StartPage extends StatelessWidget {
                                 'laundry app',
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 36,
+                                  fontSize: screenWidth * 0.09,
                                   fontWeight: FontWeight.w900,
                                 ),
                               ),
@@ -74,28 +77,33 @@ class StartPage extends StatelessWidget {
                             children: [
                               ElevatedButton(
                                 onPressed: () {
-                                  Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) => infoTurnaround())
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const InfoTurnaround(),
+                                    ),
                                   );
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.white,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 100, vertical: 15),
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: screenWidth * 0.25,
+                                    vertical: screenHeight * 0.02,
+                                  ),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                 ),
-                                child: const Text(
+                                child: Text(
                                   "Let's Start",
                                   style: TextStyle(
                                     color: Colors.deepPurpleAccent,
-                                    fontSize: 24,
+                                    fontSize: screenWidth * 0.06,
                                     fontWeight: FontWeight.w900,
                                   ),
                                 ),
                               ),
-                              const SizedBox(height: 10),
+                              SizedBox(height: screenHeight * 0.01),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -129,23 +137,26 @@ class StartPage extends StatelessWidget {
                 ],
               ),
               Positioned(
-                top: 150,
+                top: screenHeight * 0.15,
                 child: Container(
-                  width: 300,
-                  height: 300,
+                  width: screenWidth * 0.7,
+                  height: screenWidth * 0.7,
                   decoration: BoxDecoration(
                     color: Colors.orange.shade200,
                     shape: BoxShape.circle,
                     border: Border.all(
                       color: Colors.lightBlue,
-                      width: 5,
+                      width: screenWidth * 0.02,
                     ),
                   ),
                   child: Center(
-                    child: Image.asset(
-                      'assets/images/startpage.png',
-                      width: 250, // Adjust image size as needed
-                      height: 250,
+                    child: ClipOval(
+                      child: Image.asset(
+                        'assets/images/startpage.png',
+                        width: screenWidth * 0.75, // Match container size
+                        height: screenWidth * 0.75,
+                        fit: BoxFit.contain, // Ensures image crops to container
+                      ),
                     ),
                   ),
                 ),
