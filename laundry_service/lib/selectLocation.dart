@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laundry_service/ExplorePrices.dart';
 
 class SelectLocation extends StatefulWidget {
   @override
@@ -114,7 +115,11 @@ class SelectLocationState extends State<SelectLocation> {
             Column(
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ExplorePrices())
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
                     padding: EdgeInsets.symmetric(
